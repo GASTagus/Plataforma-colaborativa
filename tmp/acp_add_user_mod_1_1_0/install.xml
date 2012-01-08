@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml-stylesheet type="text/xsl" href="modx.prosilver.en.xsl"?>
+<mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.phpbb.com/mods/xml/modx-1.2.5.xsd">
+	<header>
+		<license>http://opensource.org/licenses/gpl-license.php GNU General Public License v2</license>
+    <title lang="en">ACP Add User MOD</title>
+    <description lang="en">Enables an Administrator to create a new user account through the Administration Control Panel
+Adds an extra permission to allow administrator to create a new user account.
+Gives the administrator the ability to instantly approve a new member after creation.</description>
+    <author-notes lang="en"><![CDATA[Support for multiple forms of user activation depending on board settings.
+	    Allows Administrators to create user accounts and set user registration to (off) effectively creating a private board.
+	    Support for specific add_user permission for those who want to keep creating user accounts seperate from User Administration.
+	    Support for all *required* profile fields and profile fields set to be shown on registration
+	    Support for language and birthday settings
+	    Auto generates or allows to create a password and will email it to the user.
+	    If set to User Activate, this MOD will send the user an activation email containing his username and password as well as the activation key required to activate the account.
+		If set to Admin Activate, Administrator can activate user account instantly upon creation.]]></author-notes>
+    <author-group>
+     <author>
+        <username>RMcGirr83</username>
+        <realname>Rich McGirr</realname>
+        <homepage>http://phpbbmodders.net</homepage>
+		<contributions />
+      </author>	
+      <author>
+        <username>Highway of Life</username>
+        <realname>David Lewis</realname>
+        <homepage>http://phpBBAcademy.com</homepage>
+        <email>highwayoflife@gmail.com</email>
+		<contributions-group>
+		  <contributions status="past" from="2007-09-15" to="2011-04-27" position="Developer"/>
+		</contributions-group>	
+      </author>
+    </author-group>
+	<mod-version>1.1.0</mod-version>
+	<installation>
+		<level>easy</level>
+		<time>300</time>
+		<target-version>3.0.8</target-version>
+	</installation>
+    <history>
+      <entry>
+        <date>2011-04-27</date>
+		<rev-version>1.1.0</rev-version>
+        <changelog lang="en">
+          <change>UMIL</change>
+          <change>Code changes and password choices</change>
+        </changelog>
+      </entry>	
+      <entry>
+        <date>2007-08-04</date>
+		<rev-version>1.0.1</rev-version>
+        <changelog lang="en">
+          <change>Some Language tweaks and fixes</change>
+          <change>Better optimization of some functions</change>
+          <change>Updated Registration method to be more optimized</change>
+          <change>Other minor fixes thanks to eviL&lt;3</change>
+        </changelog>
+      </entry>
+      <entry>
+        <date>2007-07-27</date>
+        <rev-version>1.0.0</rev-version>
+        <changelog lang="en">
+          <change>Official Public Release</change>
+        </changelog>
+      </entry>
+    </history>
+  </header>
+  <action-group>
+    <copy>
+      <file from="root/*.*" to="*.*" />
+    </copy>
+	<php-installer><![CDATA[acp_aumod_install.php]]></php-installer>
+<diy-instructions lang="en"><![CDATA[1. Browse to the file acp_aumod_install.php in the root of your forum to make the database changes (eg, http://mysite.com/acp_aumod_install.php).
+2. Delete the acp_aumod_install.php file from the root of your forum.
+3. Purge the cache in the ACP.  
+4. New menu item will appear within the User Management tab of the ACP.  
+5. Enjoy the Mod!!
+]]></diy-instructions>
+  </action-group>
+</mod>

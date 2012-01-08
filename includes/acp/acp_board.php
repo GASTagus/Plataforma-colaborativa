@@ -428,7 +428,10 @@ class acp_board
 				trigger_error('NO_MODE', E_USER_ERROR);
 			break;
 		}
-
+//-- mod: Prime Login via E-Mail --------------------------------------------//
+		include($phpbb_root_path . 'includes/prime_login_via_email.' . $phpEx);
+		$prime_login_via_email->display_acp_options($display_vars);
+//-- end: Prime Login via E-Mail --------------------------------------------//
 		if (isset($display_vars['lang']))
 		{
 			$user->add_lang($display_vars['lang']);

@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml-stylesheet type="text/xsl" href="./contrib/xsl/modx.prosilver.en.xsl"?>
+<!-- 
+	NOTICE: Please open this file in your web browser. If presented with a security warning, you may safely tell it to allow the blocked content.
+-->
+<!--For security purposes, please check: http://www.phpbb.com/mods/ for the latest version of this MOD. Although MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD. No support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/-->
+<mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.phpbb.com/mods/xml/modx-1.2.5.xsd">
+	<header>
+		<license>http://opensource.org/licenses/gpl-license.php GNU General Public License v2</license>
+		<title lang="en">Prime Login via E-Mail</title>
+		<description lang="en">Allows a user to login using either their username or e-mail address. It will also prevent a user from registering with a username that matches someone's e-mail address, and vice versa.</description>
+		<author-notes lang="en">Before installing this MOD, you should run the pre-installation script to search for usernames that match existing e-mail addresses. Instructions can be found in the pre-install_check.xml file.
+
+The options for this MOD can be found in the "Board features" section of the ACP. When this MOD is enabled, the "Allow e-mail address re-use" option (found in the ACP under User registration settings) will be automatically disabled. Currently, this MOD only works with Db authentication. If you can get it to work with Apache or Ldap authentication, please contact me.
+
+After this MOD is installed, users can not have a username that is the same as someone's e-mail address.
+
+Creating, maintaining, and updating MODs requires a lot of time and effort, so if you like this MOD and have the desire to express your thanks through donations, that would be greatly appreciated. My Paypal ID is primehalo@gmail.com, or contact me for my mailing address. The suggested donation amount for this MOD is $3.00 (but any amount will help).</author-notes>
+		<author-group>
+			<author>
+				<realname>Ken F. Innes IV</realname>
+				<email>primehalo@gmail.com</email>
+				<username>primehalo</username>
+				<homepage><![CDATA[http://www.absoluteanime.com/admin/mods.htm#login_via_email]]></homepage>
+			</author>
+		</author-group>
+		<mod-version>1.3.2</mod-version>
+		<installation>
+			<level>easy</level>
+			<time>120</time>
+			<target-version>3.0.8</target-version>
+		</installation>
+		<history>
+			<entry>
+				<date>2007-09-26</date>
+				<rev-version>1.0.0</rev-version>
+				<changelog lang="en">
+					<change>Initial release.</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2007-09-27</date>
+				<rev-version>1.0.1</rev-version>
+				<changelog lang="en">
+					<change>Allow administrators to re-authenticate using their e-mail address.</change>
+					<change>Prevent users from choosing a username that matches another user's e-mail address.</change>
+					<change>Replaced the UTF8-clean check on the e-mail address with just a simple case-insensitive check.</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2007-10-22</date>
+				<rev-version>1.0.1a</rev-version>
+				<changelog lang="en">
+					<change>Updated for compatibility with phpBB3.0.RC7.</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2008-07-02</date>
+				<rev-version>1.0.1b</rev-version>
+				<changelog lang="en">
+					<change>Repackaged for MODX 1.2.0.</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2008-07-17</date>
+				<rev-version>1.2.0</rev-version>
+				<changelog lang="en">
+					<change>Provide an option to enable or disable the MOD.</change>
+					<change>Provide an option to display "Username or E-Mail" next to the login box.</change>
+					<change>Provide support for all three authentication methods (Db, Ldap, Apache).</change>
+					<change>Moved most of the code inside of a class structure within a separate file. This should make updating easier in the future.</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2008-07-21</date>
+				<rev-version>1.2.1</rev-version>
+				<changelog lang="en">
+					<change>Fixed a minor bug that wouldn't allow re-authentication using the e-mail address.</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2008-07-23</date>
+				<rev-version>1.2.2</rev-version>
+				<changelog lang="en">
+					<change>Fixed a bug that presented an error when a banned user would attempt to login.</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2008-07-31</date>
+				<rev-version>1.2.3</rev-version>
+				<changelog lang="en">
+					<change>Fixed a bug where "Username or E-Mail" wouldn't show up except for admin re-authentications.</change>
+					<change>Display "Username or E-Mail" for the login box on the entry page.</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2008-08-09</date>
+				<rev-version>1.2.4</rev-version>
+				<changelog lang="en">
+					<change>Fixed a bug where the E-Mail Reuse option wouldn't be disabled.</change>
+					<change>Included a pre-installation script to search for usernames that match the e-mail addresses of other users.</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2008-08-13</date>
+				<rev-version>1.2.5</rev-version>
+				<changelog lang="en">
+					<change>Don't allow an e-mail address that is the same as someone's username.</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2008-08-27</date>
+				<rev-version>1.2.6</rev-version>
+				<changelog lang="en">
+					<change>Removed the attempted support for Apache and Ldap authentication, as I was told they wouldn't work, and I have no way to test them. If you can get it to work with one of these authentication methods, please contact me.</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2010-09-17</date>
+				<rev-version>1.3.0</rev-version>
+				<changelog lang="en">
+					<change>Added an option to disable username logins, only allowing e-mail address logins.</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2010-09-22</date>
+				<rev-version>1.3.1</rev-version>
+				<changelog lang="en">
+					<change>Update the error message for when a user enters an incorrect e-mail address.</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2011-02-05</date>
+				<rev-version>1.3.2</rev-version>
+				<changelog lang="en">
+					<change>Fixed: If the option was set to login using only an email address, then the username label on the re-authentication login form would not properly indicate that you could enter either a username or e-mail address.</change>
+				</changelog>
+			</entry>
+		</history>
+		<link-group>
+			<link type="contrib" href="pre-install_check.xml" lang="en">Pre-Install Check</link>
+			<link type="language" href="contrib/language - es.xml" realname="es" lang="en">Spanish</link>
+			<link type="contrib" href="contrib/update 1.2.6 to 1.3.0.xml" lang="en">Update 1.2.6 to 1.3.0</link>
+			<link type="contrib" href="contrib/update 1.3.0 to 1.3.1.xml" lang="en">Update 1.3.0 to 1.3.1</link>
+			<link type="contrib" href="contrib/update 1.3.1 to 1.3.2.xml" lang="en">Update 1.3.1 to 1.3.2</link>
+		</link-group>
+	</header>
+	<action-group>
+		<copy>
+ 			<file from="root/includes/prime_login_via_email.php" to="includes/prime_login_via_email.php" />
+ 			<file from="root/language/en/mods/prime_login_via_email.php" to="language/en/mods/prime_login_via_email.php" />
+		</copy>
+		<open src="includes/acp/acp_board.php">
+			<edit>
+				<find><![CDATA[		if (isset($display_vars['lang']))]]></find>
+				<action type="before-add"><![CDATA[//-- mod: Prime Login via E-Mail --------------------------------------------//
+		include($phpbb_root_path . 'includes/prime_login_via_email.' . $phpEx);
+		$prime_login_via_email->display_acp_options($display_vars);
+//-- end: Prime Login via E-Mail --------------------------------------------//]]></action>
+			</edit>
+		</open>
+
+		<open src="includes/auth/auth_db.php">
+			<edit>
+				<find><![CDATA[	$result = $db->sql_query($sql);
+	$row = $db->sql_fetchrow($result);
+	$db->sql_freeresult($result);]]></find>
+				<action type="before-add"><![CDATA[//-- mod: Prime Login via E-Mail --------------------------------------------//
+	global $phpbb_root_path, $phpEx;
+	include($phpbb_root_path . 'includes/prime_login_via_email.' . $phpEx);
+	$row = null;
+	if ($config['login_via_email_enable'] != LOGIN_VIA_EMAIL_ONLY || defined('ADMIN_START'))
+	{
+//-- end: Prime Login via E-Mail --------------------------------------------//]]></action>
+				<action type="after-add"><![CDATA[//-- mod: Prime Login via E-Mail --------------------------------------------//
+	}
+	$prime_login_via_email->check_for_email($row, $sql, $username);
+//-- end: Prime Login via E-Mail --------------------------------------------//]]></action>
+			</edit>
+		</open>
+
+		<open src="includes/functions.php">
+			<edit>
+				<find><![CDATA[	if (isset($_POST['login']))]]></find>
+				<action type="before-add"><![CDATA[//-- mod: Prime Login via E-Mail --------------------------------------------//
+	include($phpbb_root_path . 'includes/prime_login_via_email.' . $phpEx);
+	$prime_login_via_email->correct_username_var($admin);
+//-- end: Prime Login via E-Mail --------------------------------------------//]]></action>
+			</edit>
+		</open>
+
+		<open src="includes/functions_user.php">
+			<edit>
+				<find><![CDATA[	$sql = 'SELECT username
+		FROM ' . USERS_TABLE . "
+		WHERE username_clean = '" . $db->sql_escape($clean_username) . "'";]]></find>
+				<action type="after-add"><![CDATA[//-- mod: Prime Login via E-Mail --------------------------------------------//
+// Don't allow a username that is the same as someone's e-mail address.
+	$sql .= " OR user_email = '" . $db->sql_escape(strtolower($username)) . "'";
+//-- end: Prime Login via E-Mail --------------------------------------------//]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[			WHERE user_email_hash = " . $db->sql_escape(phpbb_email_hash($email));]]></find>
+				<action type="after-add"><![CDATA[//-- mod: Prime Login via E-Mail --------------------------------------------//
+// Don't allow an e-mail address that is the same as someone's username.
+		$sql .= " OR username = '" . $db->sql_escape($email) . "'";
+//-- end: Prime Login via E-Mail --------------------------------------------//]]></action>
+			</edit>
+		</open>
+
+		<open src="index.php">
+			<edit>
+				<find><![CDATA[// Output page]]></find>
+				<action type="before-add"><![CDATA[//-- mod: Prime Login via E-Mail --------------------------------------------//
+	include($phpbb_root_path . 'includes/prime_login_via_email.' . $phpEx);
+	$prime_login_via_email->update_label();
+//-- end: Prime Login via E-Mail --------------------------------------------//
+]]></action>
+			</edit>
+		</open>
+
+		<diy-instructions lang="en">Before installing this MOD, you should run the pre-installation script to search for usernames that
+match existing e-mail addresses. Instructions can be found in the pre-install_check.xml file.
+			
+There is an update_db.php file located in the contrib directory that can be used to remove
+the database changes should you choose to uninstall the MOD. Just copy the update_db.php
+file to the root directory of your forum and then access it via your web browser.</diy-instructions>
+
+	</action-group>
+</mod>

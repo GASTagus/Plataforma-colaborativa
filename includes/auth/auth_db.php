@@ -65,7 +65,18 @@ function login_db($username, $password, $ip = '', $browser = '', $forwarded_for 
 	$sql = 'SELECT user_id, username, user_password, user_passchg, user_pass_convert, user_email, user_type, user_login_attempts
 		FROM ' . USERS_TABLE . "
 		WHERE username_clean = '" . $db->sql_escape($username_clean) . "'";
+//-- mod: Prime Login via E-Mail --------------------------------------------//
+	global $phpbb_root_path, $phpEx;
+	include($phpbb_root_path . 'includes/prime_login_via_email.' . $phpEx);
+	$row = null;
+	if ($config['login_via_email_enable'] != LOGIN_VIA_EMAIL_ONLY || defined('ADMIN_START'))
+	{
+//-- end: Prime Login via E-Mail --------------------------------------------//
 	$result = $db->sql_query($sql);
+//-- mod: Prime Login via E-Mail --------------------------------------------//
+	}
+	$prime_login_via_email->check_for_email($row, $sql, $username);
+//-- end: Prime Login via E-Mail --------------------------------------------//
 	$row = $db->sql_fetchrow($result);
 	$db->sql_freeresult($result);
 

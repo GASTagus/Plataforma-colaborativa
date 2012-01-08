@@ -1562,6 +1562,10 @@ function validate_username($username, $allowed_username = false)
 	$sql = 'SELECT username
 		FROM ' . USERS_TABLE . "
 		WHERE username_clean = '" . $db->sql_escape($clean_username) . "'";
+//-- mod: Prime Login via E-Mail --------------------------------------------//
+// Don't allow a username that is the same as someone's e-mail address.
+	$sql .= " OR user_email = '" . $db->sql_escape(strtolower($username)) . "'";
+//-- end: Prime Login via E-Mail --------------------------------------------//
 	$result = $db->sql_query($sql);
 	$row = $db->sql_fetchrow($result);
 	$db->sql_freeresult($result);
@@ -1733,6 +1737,10 @@ function validate_email($email, $allowed_email = false)
 		$sql = 'SELECT user_email_hash
 			FROM ' . USERS_TABLE . "
 			WHERE user_email_hash = " . $db->sql_escape(phpbb_email_hash($email));
+//-- mod: Prime Login via E-Mail --------------------------------------------//
+// Don't allow an e-mail address that is the same as someone's username.
+		$sql .= " OR username = '" . $db->sql_escape($email) . "'";
+//-- end: Prime Login via E-Mail --------------------------------------------//
 		$result = $db->sql_query($sql);
 		$row = $db->sql_fetchrow($result);
 		$db->sql_freeresult($result);

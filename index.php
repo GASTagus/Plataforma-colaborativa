@@ -134,7 +134,10 @@ $template->assign_vars(array(
 	'U_MARK_FORUMS'		=> ($user->data['is_registered'] || $config['load_anon_lastread']) ? append_sid("{$phpbb_root_path}index.$phpEx", 'hash=' . generate_link_hash('global') . '&amp;mark=forums') : '',
 	'U_MCP'				=> ($auth->acl_get('m_') || $auth->acl_getf_global('m_')) ? append_sid("{$phpbb_root_path}mcp.$phpEx", 'i=main&amp;mode=front', true, $user->session_id) : '')
 );
-
+//-- mod: Prime Login via E-Mail --------------------------------------------//
+	include($phpbb_root_path . 'includes/prime_login_via_email.' . $phpEx);
+	$prime_login_via_email->update_label();
+//-- end: Prime Login via E-Mail --------------------------------------------//
 // Output page
 page_header($user->lang['INDEX']);
 
