@@ -60,7 +60,7 @@ $submit = (isset($_POST['submit'])) ? true : false;
 
 $default_key = 'c';
 $sort_key = request_var('sk', $default_key);
-$sort_dir = request_var('sd', 'd');
+$sort_dir = request_var('sd', 'a');
 
 
 // Grab rank information for later

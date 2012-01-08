@@ -73,13 +73,12 @@ function login_db($username, $password, $ip = '', $browser = '', $forwarded_for 
 	{
 //-- end: Prime Login via E-Mail --------------------------------------------//
 	$result = $db->sql_query($sql);
+	$row = $db->sql_fetchrow($result);
+	$db->sql_freeresult($result);
 //-- mod: Prime Login via E-Mail --------------------------------------------//
 	}
 	$prime_login_via_email->check_for_email($row, $sql, $username);
 //-- end: Prime Login via E-Mail --------------------------------------------//
-	$row = $db->sql_fetchrow($result);
-	$db->sql_freeresult($result);
-
 	if (($ip && !$config['ip_login_limit_use_forwarded']) ||
 		($forwarded_for && $config['ip_login_limit_use_forwarded']))
 	{

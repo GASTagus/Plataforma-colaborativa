@@ -2972,7 +2972,10 @@ function login_box($redirect = '', $l_explain = '', $l_success = '', $admin = fa
 		}
 		trigger_error('NO_AUTH_ADMIN');
 	}
-
+//-- mod: Prime Login via E-Mail --------------------------------------------//
+	include($phpbb_root_path . 'includes/prime_login_via_email.' . $phpEx);
+	$prime_login_via_email->correct_username_var($admin);
+//-- end: Prime Login via E-Mail --------------------------------------------//
 	if (isset($_POST['login']))
 	{
 		// Get credential
