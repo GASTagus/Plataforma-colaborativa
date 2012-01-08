@@ -1,0 +1,7 @@
+/cache/*.php
+/cache/queue.php.lock
+/config.php
+/files/*
+/images/avatars/gallery/*
+/images/avatars/upload/*
+/store/*
