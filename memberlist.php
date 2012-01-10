@@ -61,7 +61,7 @@ $submit = (isset($_POST['submit'])) ? true : false;
 $default_key = 'm';
 $sort_key = request_var('sk', $default_key);
 $sort_dir = request_var('sd', 'd');
-
+$members_per_page = 2000;
 
 // Grab rank information for later
 $ranks = $cache->obtain_ranks();
@@ -1459,22 +1459,73 @@ switch ($mode)
 				'S_USER_SEARCH_ACTION'	=> append_sid("{$phpbb_root_path}memberlist.$phpEx", "mode=searchuser&amp;form=$form&amp;field=$field"))
 			);
 		}
-		if ( $user->data['user_rank'] == 2 )
+		// A
+		if ( $user->data['user_rank'] == 6
+			|| $user->data['user_rank'] == 11
+			|| $user->data['user_rank'] == 16
+			|| $user->data['user_rank'] == 2 )
 		{
-		// Get us some users :D
 		$sql = "SELECT u.user_id
 			FROM " . USERS_TABLE . " u
 				$sql_from
 			WHERE u.user_type IN (" . USER_NORMAL . ', ' . USER_FOUNDER . ")
-				AND u.user_rank in ( 2,4 ,5 ,6,7,8)
+				AND u.user_rank in (6,11,16,2,10,15)
 				$sql_where
-			ORDER BY $order_by";
-		$result = $db->sql_query_limit($sql, $members_per_page, $start);
+			ORDER BY $order_by";	
+		}
+		// B
+		elseif ( $user->data['user_rank'] == 7
+			|| $user->data['user_rank'] == 12
+			|| $user->data['user_rank'] == 17
+			|| $user->data['user_rank'] == 3 )
+		{
+		$sql = "SELECT u.user_id
+			FROM " . USERS_TABLE . " u
+				$sql_from
+			WHERE u.user_type IN (" . USER_NORMAL . ', ' . USER_FOUNDER . ")
+				AND u.user_rank in (7,12,17,3,10,15)
+				$sql_where
+			ORDER BY $order_by";	
+		}
+		// C
+		elseif ( $user->data['user_rank'] == 8
+			|| $user->data['user_rank'] == 13
+			|| $user->data['user_rank'] == 18
+			|| $user->data['user_rank'] == 4 )
+		{
+		$sql = "SELECT u.user_id
+			FROM " . USERS_TABLE . " u
+				$sql_from
+			WHERE u.user_type IN (" . USER_NORMAL . ', ' . USER_FOUNDER . ")
+				AND u.user_rank in (8,13,18,4,10,15)
+				$sql_where
+			ORDER BY $order_by";	
+		}
+		// D
+		elseif ( $user->data['user_rank'] == 9
+			|| $user->data['user_rank'] == 14
+			|| $user->data['user_rank'] == 19
+			|| $user->data['user_rank'] == 5 )
+		{
+		$sql = "SELECT u.user_id
+			FROM " . USERS_TABLE . " u
+				$sql_from
+			WHERE u.user_type IN (" . USER_NORMAL . ', ' . USER_FOUNDER . ")
+				AND u.user_rank in (9,14,19,5,10,15)
+				$sql_where
+			ORDER BY $order_by";	
 		}
 		else
 		{
-			return;		
+			// Get us some users :D
+		$sql = "SELECT u.user_id
+			FROM " . USERS_TABLE . " u
+				$sql_from
+			WHERE u.user_type IN (" . USER_NORMAL . ', ' . USER_FOUNDER . ")
+				$sql_where
+			ORDER BY $order_by";	
 		}
+		$result = $db->sql_query_limit($sql, $members_per_page, $start);
 		$user_list = array();
 		while ($row = $db->sql_fetchrow($result))
 		{
@@ -1705,12 +1756,18 @@ function show_profile($data, $user_notes_enabled = false, $warn_user_enabled = f
 		}
 	}
 
+$rank = $rank_title;
+if ( $user->data['user_rank'] != 1 && $user->data['user_rank'] != 4 && $user->data['user_rank'] != 6 && ( stristr($rank_title, " - a") || stristr($rank_title, " - b") || stristr($rank_title, " - c") || stristr($rank_title, " - d")))
+{
+	$rank = substr( $rank_title , 0 , strlen($rank_title) - 3);
+}
+
 	// Dump it out to the template
 	return array(
 		'USER_AVATAR'		=> get_user_avatar($data['user_avatar'], $data['user_avatar_type'], $data['user_avatar_width'], $data['user_avatar_height']),
 		'USER_AVATAR_THUMB'	=> ($data['user_avatar']) ? get_user_avatar($data['user_avatar'], $data['user_avatar_type'], ($data['user_avatar_width'] > $data['user_avatar_height']) ? 25 : (25 / $data['user_avatar_height']) * $data['user_avatar_width'], ($data['user_avatar_height'] > $data['user_avatar_width']) ? 25 : (25 / $data['user_avatar_width']) * $data['user_avatar_height']) : '',
 		'AGE'			=> $age,
-		'RANK_TITLE'	=> $rank_title,
+		'RANK_TITLE'	=> $rank,
 		'JOINED'		=> $user->format_date($data['user_regdate']),
 		'VISITED'		=> (empty($last_visit)) ? ' - ' : $user->format_date($last_visit),
 		'POSTS'			=> ($data['user_posts']) ? $data['user_posts'] : 0,
