@@ -203,7 +203,7 @@ a#logo:hover {
 	margin-bottom: 4px;
 	padding: 0 5px;
 	clear: both;
-	margin-bottom:3em;
+	margin-bottom:2em;
 }
 
 .forumbg {

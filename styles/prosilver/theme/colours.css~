@@ -48,9 +48,9 @@ hr.dashed {
 /* Round cornered boxes and backgrounds
 ---------------------------------------- */
 .headerbar {
-/*	background-color: #12A3EB;
+	background-color: #12A3EB;
 	background-image: url("{T_THEME_PATH}/images/bg_header.gif");
-	color: #FFFFFF;*/
+	color: #FFFFFF;
 }
 
 .navbar {
