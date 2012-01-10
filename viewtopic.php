@@ -1557,6 +1557,7 @@ for ($i = 0, $end = sizeof($post_list); $i < $end; ++$i)
 		'U_SEARCH'		=> $user_cache[$poster_id]['search'],
 		'U_PM'			=> ($poster_id != ANONYMOUS && $config['allow_privmsg'] && $auth->acl_get('u_sendpm') && ($user_cache[$poster_id]['allow_pm'] || $auth->acl_gets('a_', 'm_') || $auth->acl_getf_global('m_'))) ? append_sid("{$phpbb_root_path}ucp.$phpEx", 'i=pm&amp;mode=compose&amp;action=quotepost&amp;p=' . $row['post_id']) : '',
 		'U_EMAIL'		=> $user_cache[$poster_id]['email'],
+		'U_EMAIL_LANG'		=> substr($user_cache[$poster_id]['email'],7,strlen($user_cache[$poster_id]['email'])),
 		'U_WWW'			=> $user_cache[$poster_id]['www'],
 		'U_ICQ'			=> $user_cache[$poster_id]['icq'],
 		'U_AIM'			=> $user_cache[$poster_id]['aim'],
